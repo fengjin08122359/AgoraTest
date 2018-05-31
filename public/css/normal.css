@@ -1,0 +1,10 @@
+body{
+	overflow:hidden;
+	        width: 100%;
+}
+.toolbar{
+	text-align: center;
+}
+.toolbar ul{
+	padding:0;
+}

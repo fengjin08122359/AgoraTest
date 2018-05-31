@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="ie-stand">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+		<title>云屋VideoCall测试</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" ></meta>
+		<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+		<meta name="description" content="cloudroom live demo"></meta>
+		<meta name="author" content="deva"/></meta>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+		<link rel="stylesheet" type="text/css" href="/webrtc/css/common.css">
+		<link rel="stylesheet" type="text/css" href="/webrtc/css/index.css">
+		<link rel="stylesheet" href="/webrtc/layui/css/layui.css">
+		<script type="text/javascript" src="/webrtc/js/jquery-1.8.0.min.js"></script>
+	</head>
+
+	<body >
+		<!--登录容器 -->	
+		<div class="login_containt">
+			<div class="login_module">
+				<div class="login_header">
+					<img src="/webrtc/image/icon_03.png">
+				</div>
+				<div class="login_header_name">
+					<span>视频呼叫</span>
+				</div>
+				<div id="login_server" class="login_form_box" style="display:none">
+					<div id="login_server_input" class="login_input">
+						<label>服务器：</label>
+						<input type="text" name="login_server" id="login_server_name" value="ali8.cloudroom.com">
+						<!-- <span id="login_server_img"><img class="remeber_server" src="/webrtc/image/icon_14.png"></span> -->
+						<div class="inputLayer1" id="login_server_player"></div>
+						<script type="text/javascript">
+							var localhref = window.location.host;
+							$("#login_server_name").val(localhref)
+
+						</script>
+					</div>
+				</div>
+				
+				<div id="login_cpyname" class="login_form_box">
+					<div id="login_cpyname_input" class="login_input">
+						<label>用户名：</label>
+						<input type="text" name="login_cpyname_name" id="login_cpyname_name" value="demo@cloudroom.com" style="color: #222;">
+						<div class="inputLayer3"></div>
+						<script type="text/javascript">
+							var localhref = window.location.host;
+							$("#login_cpyname_name").val(sessionStorage.getItem("login_cpyname_name") || "demo@cloudroom.com");
+
+						</script>
+					</div>
+				</div> 
+
+				<div id="login_psd" class="login_form_box">
+					<div id="login_psd_input" class="login_input">
+						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+						<input type="password" name="login_psd_name" id="login_psd_name" value="123456" style="color: #222;">
+						<div class="inputLayer4"></div>
+					</div>
+				</div>
+
+				<div id="login_name" class="login_form_box">
+					<div id="login_name_input" class="login_input">
+						<label>登录昵称：</label>
+						<input type="text" name="login_name" id="login_name_name" value="">
+						<div class="inputLayer2" id="login_name_player"></div>
+					</div>
+				</div>
+				<div id="login_style" class="login_form_box">
+					<div id="login_style_input" class="login_input">
+						<label>登录身份：</label>
+						<input type="text" name="login_name" id="login_style_name" value="客户"  disabled="true" style="color: #222;">
+						<span id="login_style_img"><img class="remeber_name" src="/webrtc/image/icon_14.png"></span>
+					</div>
+					<ul class="pull_down_name" id="login_style_pull">
+						<li>客户</li>
+						<li>坐席</li>
+					</ul>
+				</div>
+				<div class="login_button">
+					<button>登录</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="queue_containt" style="display:none">
+			<div class="queue_module">
+				<!-- 头部开始 -->
+				<div class="queue_header">
+					<span class="queue_username">欢迎.....</span>
+					<span class="queue_uptate" id="queue_uptate" onclick="refresh_que()">刷新</span>
+					<span class="queue_logout" id="queue_logout" onclick="logout()">注销</span>
+				</div>
+				<!-- 头部结束 -->
+				<!-- 列表开始 -->
+				<ul id="queue_list">
+				</ul>
+				<!-- 列表结束 -->
+			</div>
+		</div>
+		<div class="start_server_containt" style="display:none">
+			<div class="start_server_module">
+			    <div class="notifyUserBox" id="notifyUserBox">
+					<div class="closeUserPage" onclick="closeUserPage()">X</div>
+					<p></p>
+				</div>
+				<div class="notifyUserBox2" id="notifyUserBox2">
+					<div class="closeUserPage" onclick="closeUserPage2()">X</div>
+					<p></p>
+				</div>
+				<!-- 头部开始 -->
+				<div class="start_server_header">
+					<span class="start_server_username">欢迎<span id="start_server_username">ocean...</span></span>
+					<span class="start_server_logout" id="start_server_logout" onclick="logout()">注销</span>
+				</div>
+				<!-- 头部结束 -->
+				<!-- 列表开始 -->
+				<ul id="start_server_list">
+					<li>
+						<span>窗口名称</span>
+						<span>专家人数</span>
+						<span>排队人数</span>
+						<span>正在进行的对话</span>
+						<span>服务状态</span>
+						<span>优先级</span>
+					</li>
+				</ul>
+				<div class="start_server_footer">
+					<span class="start_server_footer_left">
+						<input type="checkbox" name="start_server_disturb" id="start_server_disturb" value="0">
+						<span>免打扰（手动分配）</span>
+						<div style="display:inline-block;border:1px solid #ccc;margin-left: 10px;height: 30px;line-height: 30px;cursor: pointer;font-size: 12px;padding:4px;" onclick="startStatus()">开启用户状态监听</div>
+						<div style="display:inline-block;border:1px solid #ccc;margin-left: 10px;height: 30px;line-height: 30px;cursor: pointer;font-size: 12px;padding:4px;" onclick="stopStatus()">停止用户状态监听</div>
+					</span>
+					<span class="start_server_footer_right">下一位客户</span>
+				</div>
+				<!-- 列表结束 -->
+			</div>
+		</div>
+		<div class="meeting_containt" style="display:none">
+			<div class="meeting_hdeader">
+				<div class="meeting_header_main">
+					<span class="meeting_header_main_left">
+						<span class="meeting_hdeader_logo"><img src="/webrtc/image/icon_24.png" ></span>
+						<span class="meeting_titile">您正在和【兔兔】视频会话中...</span>
+					</span>
+					
+					<span class="meeting_head_wifi"><img src="/webrtc/image/icon_13.png"></span>
+				</div>
+			</div>
+			<div class="meeting_media_box">
+				<div class="meeting_media_title" style="display: block;">
+					<div class="meeting_media_button_left">
+						<!-- <span id="pic_btn"><img src="/webrtc/image/icon_30.png">截图</span>
+						<span>查看截图</span> -->
+					</div>
+					<div class="meeting_media_button_right">
+						<!-- <p class="radio_contain">
+							<span class="radio_item">
+								<input type="radio" name="time_range" checked="checked" value="1"/>
+								<label class="radio_label ongray">
+									<span class="radio_icon"></span>
+									<span class="fs14_col48_verm_disib" style="color:#fff;">摄像头</span>
+								</label>
+							</span>
+						</p> -->
+            <span id="showRecordMsg" class="meet_start_record" style="width: 140px;"><img src="/webrtc/image/icon_38.png">开始录制</span>
+						<span class="meet_start_file" style="display: inline-block;width: 40px;"><img src="/webrtc/image/icon_28.png"/></span>
+					</div>
+				</div>
+				<!-- 视频区域 -->
+				<div class="meet_video_media">
+					<div class="meet_video_media_left">
+						<div id="remoteName" class="videonickname"></div>
+					</div>
+					<div class="meet_video_media_right">
+						<div class="meet_video_media_host">
+							<div id="localName" class="videonickname"></div>
+						</div>
+						<div class="meet_video_media_reset">
+							<div id="meet_reset_camera" class="meet_video_reset" style="margin-top: 12px;">
+								<label class="meet_label">摄像头</label>
+								<select id="video_select">
+								</select>
+								<button id="video_operate_btn">关闭</button>
+							</div>
+							<div id="meet_reset_speaker" class="meet_video_reset">
+								<label class="meet_label">扬声器</label>
+								<select id="spker_select">
+								</select>
+							</div>
+							<div id="meet_reset_micraphone" class="meet_video_reset">
+								<label class="meet_label">麦克风</label>
+								<select id="mic_select">
+								</select>
+								<button id="mic_operate_btn">关闭</button>
+							</div>
+							<div id="meet_reset_video_size" class="meet_video_reset">
+								<label class="meet_label">视频尺寸</label>
+								<select id="size_select">
+									<option value="1">144*80</option>
+									<option value="2">224*128</option>
+									<option value="3">288*160</option>
+									<option value="4">336*192</option>
+									<option value="5">448*256</option>
+									<option value="6">512*288</option>
+									<option value="7">576*320</option>
+									<option value="8" selected="true">640*360</option>
+									<option value="9">720*400</option>
+									<option value="10">848*480</option>
+									<option value="11">1024*576</option>
+									<option value="12">1280*720</option>
+									<option value="13">1920*1080</option>
+								</select>
+							</div>
+							<div id="meet_reset_video_zl" class="meet_video_reset">
+								<label class="meet_label">视频帧率</label>
+								<input id="frame_input" type="text" name="meet_reset_video_zl" value="20">
+							</div>
+							<!-- <div id="meet_reset_video_yx" class="meet_video_reset">
+								 <p class="radio_contain">
+									<span class="radio_item">
+										<input type="radio" name="meet_yx" checked="checked" value="0"/>
+										<label class="radio_label ongray">
+											<span class="radio_icon"></span>
+											<span class="fs14_col48_verm_disib">视频质量优先</span>
+										</label>
+									</span>
+								</p>
+								 <p class="radio_contain">
+									<span class="radio_item">
+										<input type="radio" name="meet_yx" value="1"/>
+										<label class="radio_label">
+											<span class="radio_icon"></span>
+											<span class="fs14_col48_verm_disib">视频流畅优先</span>
+										</label>
+									</span>
+								</p>
+							</div> -->
+						</div>
+					</div>
+					<div style="clear: both;"></div>
+					<div class="meet_audio_media" style="display: none;">
+						<!-- <audio id="myAudio" autoplay="true"  controls width="70%" hight="30" style="display: block;float: left;"></audio> -->
+						<!-- <audio id="mainAudio" autoplay="true"  controls width="30" hight="30" style="display: block;float: left;"></audio> -->
+					</div>
+				</div>
+			</div>
+			<div class="meet_send_file" style="display: none;">
+				<!-- <div class="meet_sile_button">
+					<button class="meet_send_button onsend">发送文本数据</button>
+				</div> -->
+				<div class="meet_send_text_button">
+					<div class="meet_file_name_left">
+						<textarea id="cmd_content"></textarea>
+						<div class="meet_file_name_right">
+							<button>发送文本</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="meet_close_window">
+				<button id="meet_colse_btn">结束会话</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="/webrtc/js/md5.js"></script>
+		<script type="text/javascript" src="/webrtc/js/index.js"></script>
+		<script type="text/javascript" src="/webrtc/layui/layui.js"></script>
+		<!-- <script type="text/javascript" src="/webrtc/js/bus2/zlib.min.js"></script> -->
+
+  <!--  	<script type="text/javascript" src="/webrtc/js/bus2/adapter-latest.js"></script>
+		<script type="text/javascript" src="/webrtc/js/bus2/rtc.js?v=3"></script>
+	  <script type="text/javascript" src="/webrtc/js/bus2/postCmd.js?v=3"></script>
+	  <script type="text/javascript" src="/webrtc/js/bus2/containerUI.js?v=3"></script>
+	  <script type="text/javascript" src="/webrtc/js/bus2/enmeet.js?v=3"></script>
+		<script type="text/javascript" src="/webrtc/js/bus2/sdkDebug.js?v=1"></script> -->
+	    
+	  <script type="text/javascript" src="/webrtc/js/rtcsdk.js?v=1"></script>
+    <script type="text/javascript" src="/webrtc/js/metting.js?v=1"></script>
+	</body>
+</html>

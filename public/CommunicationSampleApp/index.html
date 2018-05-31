@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Communication Services Package Sample App</title>
+
+    <!--STYLESHEETS-->
+    <link href="css/ext/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/ext/bootstrap-toggle.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+
+</head>
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <header class="page-header">
+        <h1 class="text-center">Communication Services Package Sample App<span id="clientVersion"></span></h1>
+    </header>
+    <!--END HEADER-->
+    <!--MAIN CONTAINER-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3">
+                <!--SETTINGS PANEL-->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Login Panel</h3>
+                            </div>
+                            <!--SERVICES CONFIGS-->
+                            <div class="panel-body">
+                                <nav>
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#callConfig">Call</a></li>
+                                        <li><a data-toggle="tab" href="#messagingConfig">Messaging</a></li>
+                                        <li><a data-toggle="tab" href="#deviceServicesConfig">Contacts</a></li>
+                                        <li><a data-toggle="tab" href="#about">About</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="tab-content">
+                                    <!--CALLS CONFIG-->
+                                    <div id="callConfig" class="tab-pane active">
+                                        <form class="callConfigForm">
+                                            <div class="form-group">
+                                                <label for="callServerAddress">Server address</label>
+                                                <input type="url" class="form-control" id="callServerAddress" placeholder="AAWG.example.com" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="callPort">Port</label>
+                                                <input value="8443" type="number" class="form-control" id="callPort" placeholder="Port" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="callTls">Secure</label>
+                                                <div class="pull-right">
+                                                    <input id="callTls" type="checkbox" checked data-toggle="toggle" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="callUsername">Username</label>
+                                                <input type="text" class="form-control" id="callUsername" placeholder="Username" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="callPassword">Password</label>
+                                                <input type="password" class="form-control" id="callPassword" placeholder="Password" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--END CALLS CONFIG-->
+                                    <!--MESSAGING CONFIG-->
+                                    <div id="messagingConfig" class="tab-pane">
+                                        <form class="messagingConfigForm">
+                                            <div class="form-group">
+                                                <label for="messagingServerAddress">Server address</label>
+                                                <input type="url" class="form-control" id="messagingServerAddress" placeholder="AMM.example.com" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="messagingPort">Port</label>
+                                                <input value="8443" type="number" class="form-control" id="messagingPort" placeholder="Port" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="messagingTls">Secure</label>
+                                                <div class="pull-right">
+                                                    <input id="messagingTls" type="checkbox" checked data-toggle="toggle">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="messagingUsername">Username</label>
+                                                <input type="text" class="form-control" id="messagingUsername" placeholder="Username" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="messagingPassword">Password</label>
+                                                <input type="password" class="form-control" id="messagingPassword" placeholder="Password" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--END MESSAGING CONFIG-->
+                                    <!--DEVICE SERVICES CONFIG-->
+                                    <div id="deviceServicesConfig" class="tab-pane">
+                                        <form class="deviceServicesConfigForm">
+                                            <div class="form-group">
+                                                <label for="deviceServicesServerAddress">Server address</label>
+                                                <input type="url" class="form-control" id="deviceServicesServerAddress" placeholder="AADS.example.com" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deviceServicesPort">Port</label>
+                                                <input value="8443" type="number" class="form-control" id="deviceServicesPort" placeholder="Port" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deviceServicesTls">Secure</label>
+                                                <div class="pull-right">
+                                                    <input id="deviceServicesTls" type="checkbox" checked data-toggle="toggle" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deviceServicesUsername">Username</label>
+                                                <input type="text" class="form-control" id="deviceServicesUsername" placeholder="Username" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deviceServicesPassword">Password</label>
+                                                <input type="password" class="form-control" id="deviceServicesPassword" placeholder="Password" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--END DEVICE SERVICES CONFIG-->
+                                    <!--ABOUT TAB-->
+                                    <div id="about" class="tab-pane">
+                                        <div class="versions">
+                                            <h5 class="aboutTitle">Communications Package Sample App</h5>
+                                            <span class="versionTitle">Version: </span><span id="sampleAppVersion">1.0.0</span>
+                                            <h5 class="aboutTitle">Avaya Client Services</h5>
+                                            <span class="versionTitle">Version: </span><span id="SDKVersion"></span>
+                                        </div>
+                                    </div>
+                                    <!--END ABOUT TAB-->
+                                </div>
+                                <!--LOGIN/LOGOUT BUTTONS-->
+                                <div>
+                                    <button id="loginBtn" type="button" class="btn btn-default">Login</button>
+                                    <button id="logoutBtn" type="button" class="btn btn-default pull-right" disabled>Logout</button>
+                                </div>
+                                <!--END LOGIN/LOGOUT BUTTONS-->
+                            </div>
+                            <!--END SERVICES CONFIGS-->
+                        </div>
+                    </div>
+                </div>
+                <!--END SETTINGS PANEL-->
+                <!--ERROR LOG-->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Error Log</h3>
+                            </div>
+                            <div id="errorLog" class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END ERROR LOG-->
+            </div>
+            <!--TEST APP SERVICES PANELS-->
+            <div id="servicesPanel" class="col-xs-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="servicesTitle" class="panel-title">Services</h3>
+                    </div>
+                    <div class="panel-body">
+                        <nav>
+                            <ul class="nav nav-tabs">
+                                <li id="callsServiceTab" class="hide"><a data-toggle="tab" href="#callService">Call</a></li>
+                                <li id="contactsServiceTab" class="hide"><a data-toggle="tab" href="#contactsService">Contacts</a></li>
+                                <li id="messagingServiceTab" class="hide"><a data-toggle="tab" href="#messagingService">Messaging</a></li>
+                                <li id="collaborationServiceTab"><a data-toggle="tab" href="#collaborationService">Collaboration</a></li>
+                            </ul>
+                        </nav>
+                        <div class="tab-content">
+                            <!--CALLS SERVICE-->
+                            <div id="callService" class="tab-pane hide">
+                                <!--CALLS SERVICE BUTTONS-->
+                                <div id="makeCall">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+                                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                                        Make new call
+                                                    </h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <form class="form-inline makeCallForm">
+                                                        <div class="form-group">
+                                                            <label for="calleeAddress">Number to Call</label>
+                                                            <input type="text" class="form-control" id="calleeAddress" placeholder="Callee" />
+                                                        </div>
+                                                        <button id="audioCallBtn" type="button" class="btn btn-default">Make Audio Call</button>
+                                                        <button id="videoCallBtn" type="button" class="btn btn-default">Make Video Call</button>
+                                                        <div class="checkbox pull-right">
+                                                            <label><input id="callOTT" type="checkbox"> Scopia Conference</label>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--END CALLS SERVICE BUTTONS-->
+                                
+                                <div id="calls">
+
+                                </div>
+                            </div>
+                            <!--END CALLS SERVICE-->
+                            <!--CONTACTS SERVICE-->
+                            <div id="contactsService" class="tab-pane hide">
+                                <div class="row">
+                                    <!--CONTACTS SERVICE BUTTONS-->
+                                    <div class="col-xs-12 contactsPanel">
+                                        <div class="searchPanel col-xs-5 pull-left input-group">
+                                            <input id="searchContactInput" type="text" class="form-control" />
+                                            <span class="input-group-btn">
+                                                <button id="searchBtn" class="btn btn-default" type="button">Search</button>
+                                            </span>
+                                        </div>
+                                        <div class="col-xs-3 pull-right">
+                                            <button id="addNewContactBtn" class="btn btn-default pull-right" type="button">Add Contact</button>
+                                        </div>
+                                    </div>
+                                    <!--END CONTACTS SERVICE BUTTONS-->
+                                    <!--PREVIEW PRESENCE STATES-->
+                                    <div class="presenceLegend col-xs-12" style="font-size: 10px">
+                                        <span class="unknown glyphicon glyphicon-question-sign">Unknown</span>
+                                        <span class="unspecified glyphicon glyphicon-question-sign">Unspecified</span>
+                                        <span class="available glyphicon glyphicon-ok-sign">Available</span>
+                                        <span class="onACall glyphicon glyphicon-earphone">On a call</span>
+                                        <span class="busy glyphicon glyphicon-minus-sign">Busy</span>
+                                        <span class="away glyphicon glyphicon-ok-sign">Away</span>
+                                        <span class="doNotDisturb glyphicon glyphicon-minus-sign">Do not disturb</span>
+                                        <span class="outOfOffice glyphicon glyphicon-ok-sign">Out of office</span>
+                                        <span class="offline glyphicon glyphicon-remove-sign">Offline</span>
+                                    </div>
+                                    <!--END PREVIEW PRESENCE STATES-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <!--ACCOUNT CONTACTS LIST-->
+                                        <div class="col-xs-6">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Contacts</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="presenceTh"></th>
+                                                                        <th class="NameTh">First Name</th>
+                                                                        <th class="nameTh">Last Name</th>
+                                                                        <th class="editTh"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="contactListTableBody">
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--END ACCOUNT CONTACTS LIST-->
+                                        <!--SEARCH CONTACTS LIST-->
+                                        <div class="col-xs-6">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Search Contacts <span id="searchResults"></span></h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th class="presenceTh"></th>
+                                                                    <th class="nameTh">Contact Name</th>
+                                                                    <th class="editTh"></th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody id="contactSearchListTableBody">
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--END SEARCH CONTACTS LIST-->
+                                    </div>
+                                </div>
+                                <!--CONTACT DETAILS MODAL-->
+                                <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="contactModalTitle">Contact</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="contactForm">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactFirstName">First Name</label>
+                                                                <input type="text" class="form-control" id="contactFirstName" placeholder="First Name" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactFirstNameASCII">First Name (ASCII)</label>
+                                                                <input type="text" class="form-control" id="contactFirstNameASCII" placeholder="First Name (ASCII)" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactAlias">Alias</label>
+                                                                <input type="text" class="form-control" id="contactAlias" placeholder="Alias" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactCompany">Company</label>
+                                                                <input type="text" class="form-control" id="contactCompany" placeholder="Company" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactLastName">Last Name</label>
+                                                                <input type="text" class="form-control" id="contactLastName" placeholder="Last Name" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactLastNameASCII">Last Name (ASCII)</label>
+                                                                <input type="text" class="form-control" id="contactLastNameASCII" placeholder="Last Name (ASCII)" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactLocation">Location</label>
+                                                                <input type="text" class="form-control" id="contactLocation" placeholder="Location" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactManager">Manager</label>
+                                                                <input type="text" class="form-control" id="contactManager" placeholder="Manager" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactDisplayName">Display Name</label>
+                                                                <input type="text" class="form-control" id="contactDisplayName" placeholder="Display Name" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactDisplayNameASCII">Display Name (ASCII)</label>
+                                                                <input type="text" class="form-control" id="contactDisplayNameASCII" placeholder="Display Name (ASCII)" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactWorkRoomNumber">Work Room Number</label>
+                                                                <input type="text" class="form-control" id="contactWorkRoomNumber" placeholder="Work Room Number" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactDepartment">Department</label>
+                                                                <input type="text" class="form-control" id="contactDepartment" placeholder="Department" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label for="contactStreetAddress">Street Address</label>
+                                                                <input type="text" class="form-control" id="contactStreetAddress" placeholder="Street Address" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactCity">City</label>
+                                                                <input type="text" class="form-control" id="contactCity" placeholder="City" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactState">State</label>
+                                                                <input type="text" class="form-control" id="contactState" placeholder="State" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactNotes">Notes</label>
+                                                                <input type="text" class="form-control" id="contactNotes" placeholder="Notes" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactTerminalName">Terminal Name</label>
+                                                                <input type="text" class="form-control" id="contactTerminalName" placeholder="Terminal Name" disabled />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactCountry">Country</label>
+                                                                <input type="text" class="form-control" id="contactCountry" placeholder="Country" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactScopiaUserID">Scopia user ID</label>
+                                                                <input type="text" class="form-control" id="contactScopiaUserID" placeholder="Scopia user ID" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="contactPostalCode">Postal Code</label>
+                                                                <input type="text" class="form-control" id="contactPostalCode" placeholder="Postal Code" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="contactTerminalID">Terminal ID</label>
+                                                                <input type="text" class="form-control" id="contactTerminalID" placeholder="Terminal ID" disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h3 class="text-center">Phone Numbers<button id="addPhoneNumberBtn" type="button" class="btn btn-link">Add</button></h3>
+                                                        <div id="phoneNumbersContainer" class="col-md-12">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <h3 class="text-center">Email Addresses<button id="addEmailAddressBtn" type="button" class="btn btn-link">Add</button></h3>
+                                                        <div id="emailAddressesContainer" class="col-md-12">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <h3 class="text-center">IM Addresses<button id="addIMAddressBtn" type="button" class="btn btn-link">Add</button></h3>
+                                                        <div id="IMAddressesContainer" class="col-md-12">
+
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="saveContact" type="button" class="btn btn-primary pull-left">Save changes</button>
+                                                <button id="addContact" type="button" class="btn btn-primary pull-left">Add contact</button>
+                                                <button id="deleteContact" type="button" class="btn btn-primary pull-left">Delete contact</button>
+                                                <span id="contactDetailErrorMsg"></span>
+                                                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--END CONTACT DETAILS MODAL-->
+                            </div>
+                            <!--END CONTACTS SERVICE-->
+                            <!--MESSAGING SERVICE PANEL-->
+                            <div id="messagingService" class="tab-pane hide">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="messagingPanel col-xs-10 pull-left input-group">
+                                            <input id="createConversationWith" type="text" class="form-control" />
+                                            <span class="input-group-btn">
+                                                <button id="createConversationBtn" class="btn btn-default" type="button">Create New Conversation</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <!--CONVERSATIONS LIST-->
+                                        <div class="col-xs-5">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Conversation List</h3>
+                                                </div>
+                                                <div class="panel-body conversationListPanelBody">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <div id="conversationsListGroup" class="list-group">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--END CONVERSATIONS LIST-->
+                                        <!--CONVERSATION PANEL-->
+                                        <div id="" class="col-xs-7">
+                                            <div id="conversationPanel" class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Conversation with <span id="conversationWith"></span></h3>
+                                                </div>
+                                                <div id="conversationChat" class="panel-body">
+
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <div id="isTypingInfo">
+
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <input id="conversationMessage" type="text" class="form-control" />
+                                                        <span class="input-group-btn">
+                                                            <button id="sendConversationMessage" class="btn btn-default" type="button">Send</button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group attachmentButtons">
+                                                        <label id="addAttachmentBtn" for="attachmentFile" class="btn btn-default btn-file pull-right">
+                                                            Add Attachment <input id="attachmentFile" type="file" style="display: none;">
+                                                        </label>
+                                                        <button id="deleteAttachmentBtn" class="btn btn-default pull-right" type="button">Delete Attachment</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--END CONVERSATION PANEL-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END MESSAGING SERVICE PANEL-->
+                            <!--COLLABORATION SERVICE PANEL-->
+                            <div id="collaborationService" class="tab-pane">
+
+                            </div>
+                            <!--END COLLABORATION SERVICE PANEL-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END TEST APP SERVICES PANELS-->
+        </div>
+    </div>
+
+    <!--TEMPLATES-->
+    <div id="templates" class="hidden">
+
+        <!-- CALL/CONFERENCE-->
+        <div class="panel panel-default view callView">
+            <div class="panel-heading viewHeader selected" role="tab">
+                <h2 class="panel-title">
+                    <span class="glyphicon glyphicon-earphone"></span>
+                    <span class="call">Call</span>:
+                    <span class="callId"></span>
+                    <span class="text-info callState"></span>
+                    <span class="pull-right">
+                        <span class="glyphicon glyphicon-chevron-up icon-up"></span><span class="glyphicon glyphicon-chevron-down icon-down"></span>
+                    </span>
+                </h2>
+            </div>
+            <div class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <!--CALL/CONFERENCE PANEL-->
+                        <div class="col-xs-7 callPanel">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><span class="call">Call</span> controls</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div>
+                                                <div class="callWithAddress"></div>
+                                                <div><span>Call State: </span><span class="callState">Undefined</span></div>
+                                                <div><span>Call time: </span><span class="callTimer">--:--:--</span></div>
+                                            </div>
+                                            <div class="center-block callIncomingBtns">
+                                                <button type="button" class="btn btn-default acceptAudioCallBtn">Accept Audio Call</button>
+                                                <button type="button" class="btn btn-default acceptVideoCallBtn">Accept Video Call</button>
+                                                <button type="button" class="btn btn-default ignoreCallBtn">Ignore Call</button>
+                                            </div>
+                                            <div class="videoPanel">
+                                                <video class="remoteVideo" autoplay muted title="Remote Video"></video>
+                                                <video class="localVideo" autoplay muted title="Local Video"></video>
+                                            </div>
+                                            <div class="center-block callControlBtns">
+                                                <h4 class="callPanelTitle">Call Panel:</h4>
+                                                <button type="button" class="btn btn-default muteBtn">MUTE</button>
+                                                <button type="button" class="btn btn-default unmuteBtn">UNMUTE</button>
+                                                <button type="button" class="btn btn-default holdBtn">HOLD</button>
+                                                <button type="button" class="btn btn-default unholdBtn">UNHOLD</button>
+                                                <button type="button" class="btn btn-default blockVideoBtn">BLOCK VIDEO</button>
+                                                <button type="button" class="btn btn-default unblockVideoBtn">UNBLOCK VIDEO</button>
+                                                <button type="button" class="btn btn-default pull-right endCallBtn">End Call</button>
+                                            </div>
+                                            <div class="center-block conferenceControlBtns">
+                                                <h4 class="conferencePanelTitle">Conference Panel:</h4>
+                                                <button type="button" class="btn btn-default lockConferenceBtn">Lock</button>
+                                                <button type="button" class="btn btn-default unlockConferenceBtn">Unlock</button>
+
+                                                <button type="button" class="btn btn-default muteAllBtn">Mute All</button>
+                                                <button type="button" class="btn btn-default unmuteAllBtn">Unmute All</button>
+
+                                                <button type="button" class="btn btn-default pull-right leaveConferenceBtn">Leave Conference</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row dialButtons">
+                                        <div class="col-xs-5">
+                                            <span class="dialpadTextBox"></span>
+                                            <div class="btn-group-vertical">
+                                                <button type="button" class="btn btn-default dtmfDigit" value="1">1</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="4">4</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="7">7</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="*">*</button>
+                                            </div>
+                                            <div class="btn-group-vertical">
+                                                <button type="button" class="btn btn-default dtmfDigit" value="2">2</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="5">5</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="8">8</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="0">0</button>
+                                            </div>
+                                            <div class="btn-group-vertical">
+                                                <button type="button" class="btn btn-default dtmfDigit" value="3">3</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="6">6</button>
+                                                <button type="button" class="btn btn-default dtmfDigit" value="9">9</button>
+                                                <button type="button" class="btn btn-default hash" value="#">#</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END CALL/CONFERENCE PANEL-->
+                        <!--ROSTER PANEL-->
+                        <div class="col-xs-5 rosterPanel">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Roster</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <ul class="list-group participantRoster">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END ROSTER PANEL-->
+                        <!--CONFERENCE CHAT PANEL-->
+                        <div class="col-xs-5 confMessagesPanel">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Chat</h3>
+                                </div>
+                                <div class="panel-body conferenceChatMessages">
+
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="form-group">
+                                        <label>Send to:
+                                            <select class="form-control sendTo">
+                                                <option value="all">All</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control message" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default sendMessage" type="button">Send</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END CONFERENCE CHAT PANEL-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END CALL/CONFERENCE-->
+
+
+        <!--COLLABORATION-->
+        <div class="panel panel-default view collaborationView">
+            <div class="panel-heading viewHeader selected" role="tab">
+                <h2 class="panel-title">
+                    <span class="glyphicon glyphicon-earphone"></span>
+                    Collaboration:
+                    <span class="callId"></span>
+                    <span class="pull-right">
+                        <span class="glyphicon glyphicon-chevron-up icon-up"></span><span class="glyphicon glyphicon-chevron-down icon-down"></span>
+                    </span>
+                </h2>
+            </div>
+            <div class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div>
+                                <span class="text-danger collaborationError"></span>
+                            </div>
+                            <div class="pull-right collaborationPanel">
+                                <div class="input-group">
+                                    <span class="btn-group">
+                                        <button class="btn btn-default applicationSharingBtn" type="button">Start Application Sharing</button>
+                                        <button class="btn btn-default fullSharingBtn" type="button">Start Full Window Sharing</button>
+                                        <button class="btn btn-default endSharingBtn" type="button">End Sharing</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="collaborationCanvas"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END COLLABORATION-->
+
+    </div>
+    <!--END TEMPLATES-->
+
+    <!--END MAIN CONTAINER-->
+    <!--FOOTER-->
+    <footer id="footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--END FOOTER-->
+
+    <!--UI LIBS-->
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/ext/bootstrap.min.js"></script>
+    <script src="js/ext/bootstrap-toggle.min.js"></script>
+
+    <script src="js/lib/xmlToJSON.min.js"></script>
+    <script src="js/lib/eventSource.min.js"></script>
+    <script src="js/lib/konva.min.js"></script>
+    <script src="js/lib/unorm.min.js"></script>
+
+    <!-- JSCSDK -->
+    <script src="js/lib/AvayaClientServices-1.2.0.8.min.js"></script>
+    <script src="js/lib/AvayaClientServices.Renderer.min.js"></script>
+    <script src="js/lib/AvayaClientServicesWorker.min.js"></script>
+
+    <!--COMMUNICATION PACKAGE SAMPLE APP-->
+    <script src="js/src/conversationWidget/conversationController.js"></script>
+    <script src="js/src/conversationWidget/conversationView.js"></script>
+    <script src="js/src/messagingWidget/messagingController.js"></script>
+    <script src="js/src/messagingWidget/messagingView.js"></script>
+
+    <script src="js/src/collaborationWidget/collaborationController.js"></script>
+    <script src="js/src/collaborationWidget/collaborationView.js"></script>
+
+    <script src="js/src/conferenceChatWidget/conferenceChatController.js"></script>
+    <script src="js/src/conferenceChatWidget/conferenceChatView.js"></script>
+    <script src="js/src/conferenceWidget/conferenceController.js"></script>
+    <script src="js/src/conferenceWidget/conferenceView.js"></script>
+
+    <script src="js/src/callWidget/callController.js"></script>
+    <script src="js/src/callWidget/callView.js"></script>
+    <script src="js/src/callsWidget/callsController.js"></script>
+    <script src="js/src/callsWidget/callsView.js"></script>
+
+    <script src="js/src/contactWidget/contactController.js"></script>
+    <script src="js/src/contactWidget/contactView.js"></script>
+    <script src="js/src/contactsWidget/contactsController.js"></script>
+    <script src="js/src/contactsWidget/contactsView.js"></script>
+
+    <script src="js/src/loginWidget/loginController.js"></script>
+    <script src="js/src/loginWidget/loginView.js"></script>
+    <script src="index.js"></script>
+</body>
+<!--END BODY-->
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "" "">
+<html>
+<head>
+    <meta name="renderer" content="ie-stand">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>会议demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta name="description" content="cloudroom live demo"></meta>
+    <meta name="author" content="Jeffrey"/></meta>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+    <link rel="stylesheet" type="text/css" href="/webcloud/css/common.css">
+    <link rel="stylesheet" href="/webcloud/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="/webcloud/css/index.css">
+</head>
+
+<body>
+	<div>
+    <div id="screenShareContainer"></div>
+    <button class="screen_share_btn" onclick="showScreenShareSet()">开始共享</button>
+	</div>
+    <object id="crVideoObjG" type="application/x-cloudroom-videosdk" style="width:1px;height: 1px;"></object>
+    <object id="crMgrObjG" type="application/x-cloudroom-videomgr" style="width:1px;height: 1px;"></object>
+    <object id="crMeetObjG"  type="application/x-cloudroom-videomeeting" style="width:1px;height: 1px;"></object>
+    <object id="crQueueObjG" type="application/x-cloudroom-queue" style="width:1px;height: 1px;"></object>
+    <object id="crHttpObjG"  type="application/x-cloudroom-httpfilemgr" style="width:1px;height: 1px;"></object>
+    <object id="crScreenShareG"  type="application/x-cloudroom-screenshareui" style="width:1px;height: 1px;"></object>
+     
+  <!--[if IE ]>
+    <object id="crVideoObj" classid="clsid:07EFD662-A1BB-4d8d-9BEE-F7E43E5FEBF5" width="1" height="1" ></object>
+    <object id="crMgrObj" classid="clsid:120AD2B0-68F2-46c6-88D8-52173F501C0F" width="1" height="1" ></object>
+    <object id="crMeetObj" classid="clsid:9E9DD983-A9F8-4dff-B694-B1AE1C708B1E" width="1" height="1" ></object>
+    <object id="crQueueObj" classid="clsid:9AAD199D-A02F-4513-875D-AA81091E44B9" width="1" height="1" ></object>
+    <object id="crHttpObj" classid="clsid:7E44F8C9-7C8D-4004-8F45-D9819D78663C" width="1" height="1" ></object> 
+    <script type="text/javascript" src="/webcloud/js/CloudroomVideoSDK_iePatch.js"></script>
+  <![endif]-->
+    <script type="text/javascript" src="/webcloud/js/jquery-1.8.0.min.js"></script>
+    <script src="/webcloud/js/html5.js"></script>
+    <script src="/webcloud/js/md5.js"></script>
+	<script type="text/javascript" src="/webcloud/js/CloudroomVideoSDK.js"></script>
+	<script type="text/javascript" src="/webcloud/layui/layui.js"></script>
+    <script type="text/javascript" src="/webcloud/js/meeting.js"></script>
+    <script type="text/javascript">
+    
+  </script>
+</body>
+</html>
+
+
+
